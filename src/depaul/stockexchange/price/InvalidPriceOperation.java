@@ -12,7 +12,7 @@ public final class InvalidPriceOperation extends Exception {
 		super();
 	}
 
-	public InvalidPriceOperation(String arg0) {
-		super(arg0);
+	public InvalidPriceOperation(String message) {
+		super(message);
 	}
 }

@@ -1,66 +1,100 @@
 package depaul.stockexchange.price;
 
 final class Price {
-	private long value;
-	private boolean isMarket; 
+	private final long value;
+	private final boolean isMarket; 
 	
-	/**
-	 * Creates a Price object representing the provided value. 
-	 * Remember, a long value passed in of 1499 represents $14.99, 12850 represents $128.50, etc. 
-	 * @param value
-	 * price value
-	 */
 	Price(long value) {
 		this.value = value;
+		this.isMarket = false;
 	}
-	
-	/**
-	 *  Creates a Price object representing Market price.  
-	 */
+
 	Price() {
-		
+		this.value = -1;
+		this.isMarket = true;
 	}
 	
 	public Price add(Price p) throws InvalidPriceOperation {
-		if (p == null) 
+		if (p == null) {
 			throw new InvalidPriceOperation("The price value is NULL.");
+		}
 		return new Price(this.value + p.value);
 	}
 	
 	public Price substract(Price p) throws InvalidPriceOperation {
-		if (p == null) 
+		if (p == null) {
 			throw new InvalidPriceOperation("The price value is NULL.");
+		}
 		return new Price(this.value - p.value);
 	}
 	
 	public Price multiply(int p) throws InvalidPriceOperation {
-		if (p <= 0)
-			throw new InvalidPriceOperation("The price value is invalid.");
+		if (p <= 0) {
+			throw new InvalidPriceOperation("The passed-in number is invalid.");
+		}
 		return new Price(this.value * p);
 	}
 	
-	public int compareTo(Price p) {
+	public int compareTo(Price p) throws InvalidPriceOperation {
+		if (p == null) {
+			throw new InvalidPriceOperation("The price value is NULL.");
+		}
+		if ()
+			
 		
 	}
 	
-	public boolean greaterOrEqual(Price p) {
-		
+	public boolean greaterOrEqual(Price p) throws InvalidPriceOperation {
+		if (p == null) {
+			throw new InvalidPriceOperation("The price value is NULL.");
+		}
+		if (this.value >= p.value) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	public boolean greaterThan(Price p) {
-		
+	public boolean greaterThan(Price p) throws InvalidPriceOperation {
+		if (p == null) {
+			throw new InvalidPriceOperation("The price value is NULL.");
+		}
+		if (this.value > p.value) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	public lessOrEqual(Price p) {
-		
+	public boolean lessOrEqual(Price p) throws InvalidPriceOperation {
+		if (p == null) {
+			throw new InvalidPriceOperation("The price value is NULL.");
+		}
+		if (this.value <= p.value) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
-	public lessThan(Price p) {
-		
+	public boolean lessThan(Price p) throws InvalidPriceOperation {
+		if (p == null) {
+			throw new InvalidPriceOperation("The price value is NULL.");
+		}
+		if (this.value < p.value) {
+			return true;
+		} else {
+			return false;
+		}
 	}
-	
+	public boolean equals(Price p) throws InvalidPriceOperation {
+		if (p == null) {
+			throw new InvalidPriceOperation("The price value is NULL.");
+		}
+		if 
+	}
 	public boolean isMarket() {
-		
+		if
 	}
 	
 	public boolean isNegative() {
