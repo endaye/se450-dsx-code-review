@@ -8,8 +8,8 @@ public interface Tradable {
 	int getOriginalVolume();
 	int getRemainVolume();
 	int getCancelledVolume();
-	void setCancelledVolume(int newCancelledVolume);
-	void setRemainVolume(int mewRemainvolume);
+	void setCancelledVolume(int newCancelledVolume) throws InvalidTradableValue;
+	void setRemainVolume(int mewRemainvolume) throws InvalidTradableValue;
 	String getUser();
 	String getSide();
 	boolean isQuote();
