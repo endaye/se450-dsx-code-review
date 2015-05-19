@@ -1,6 +1,6 @@
 package depaul.stockexchange.price;
 
-final class Price {
+public final class Price {
 	private final long value;
 	private final boolean isMarket; 
 	
