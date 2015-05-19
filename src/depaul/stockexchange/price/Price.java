@@ -51,15 +51,9 @@ final class Price {
 		if (p == null) {
 			throw new InvalidPriceOperation("The price value is NULL.");
 		}
-<<<<<<< HEAD
-		if (this.value == p.value) {
-			return 0;
-		} else if (this.value > p.value) {
-=======
 		if (this.equals(p)) {
 			return 0;
 		} else if (this.greaterThan(p) ) {
->>>>>>> refs/remotes/origin/master
 			return 1;
 		} else {
 			return -1;
@@ -116,11 +110,7 @@ final class Price {
 		if (p == null) {
 			throw new InvalidPriceOperation("The price value is NULL.");
 		}
-<<<<<<< HEAD
-		if (this.value == p.value) {
-=======
 		if (this.getPriceValue() == p.getPriceValue()) {
->>>>>>> refs/remotes/origin/master
 			return true;
 		} else {
 			return false;
@@ -130,34 +120,15 @@ final class Price {
 		return this.isMarket;
 	}
 	
-<<<<<<< HEAD
 	public boolean isNegative() {
 		return (this.value > 0) || !isMarket();
-=======
-	public boolean isNegative() throws InvalidPriceValue {
-		if (this.isMarket()) {
-			throw new InvalidPriceValue("This is market price value.");
-		}
-		if (this.value < 0) {
-			return true;
-		} else {
-			return false;
-		}
->>>>>>> refs/remotes/origin/master
 	}
 	
 	public String toString() {
-<<<<<<< HEAD
 		if (isMarket()) {
 			return "MKT";
 		} else {
-			return String.format("$%,.2f", (double)this.value / 100.00);
-=======
-		if (this.isMarket()) {
-			return "MKT";
-		} else {
-			return String.format("$%,.2f", (double) this.getPriceValue() / 100.00);
->>>>>>> refs/remotes/origin/master
+			return String.format("$%,.2f", (double)this.getPriceValue() / 100.00);
 		}
 	}
 }
