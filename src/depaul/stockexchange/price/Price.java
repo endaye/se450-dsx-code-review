@@ -39,7 +39,13 @@ final class Price {
 		if (p == null) {
 			throw new InvalidPriceOperation("The price value is NULL.");
 		}
-		if ()
+		if (this.value == p.value) {
+			return 0;
+		} else if (this.value > p.value) {
+			return 1;
+		} else {
+			return -1;
+		}
 			
 		
 	}
@@ -87,21 +93,30 @@ final class Price {
 			return false;
 		}
 	}
+	
 	public boolean equals(Price p) throws InvalidPriceOperation {
 		if (p == null) {
 			throw new InvalidPriceOperation("The price value is NULL.");
 		}
-		if 
+		if (this.value == p.value) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	public boolean isMarket() {
-		if
+		return this.isMarket;
 	}
 	
 	public boolean isNegative() {
-		
+		return (this.value > 0) || !isMarket();
 	}
 	
 	public String toString() {
-		
+		if (isMarket()) {
+			return "MKT";
+		} else {
+			return String.format("$%,.2f", (double)this.value / 100.00);
+		}
 	}
 }
