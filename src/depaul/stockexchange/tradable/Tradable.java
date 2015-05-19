@@ -8,10 +8,11 @@ public interface Tradable {
 	int getOriginalVolume();
 	int getRemainVolume();
 	int getCancelledVolume();
-	void setCancelledVolume(int newCancelledVolume) throws InvalidTradableValue;
-	void setRemainVolume(int mewRemainvolume) throws InvalidTradableValue;
 	String getUser();
 	String getSide();
 	boolean isQuote();
 	String getId();
+	
+	void setCancelledVolume(int newCancelledVolume) throws InvalidTradableValue;
+	void setRemainVolume(int newRemainVolume) throws InvalidTradableValue;
 }
