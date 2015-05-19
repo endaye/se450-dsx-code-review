@@ -9,9 +9,9 @@ public abstract class TradableImplement implements Tradable {
 	protected String id;
 	protected BookSide side;
 	protected Price price;
-	protected int originalVolume;
-	protected int remainVolume;
-	protected int cancelledVolume;
+	protected int originalVolume = 0;
+	protected int remainVolume = 0;
+	protected int cancelledVolume = 0;
 	
 	@Override
 	public String getProduct() {
@@ -72,7 +72,7 @@ public abstract class TradableImplement implements Tradable {
 		
 	}
 	
-	protected abstract void buildId() throws InvalidTradableValue;
+	protected abstract void buildId();
 	
 	protected void setSide(BookSide side) {
 		this.side = side;

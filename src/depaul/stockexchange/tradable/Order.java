@@ -23,9 +23,14 @@ public class Order extends TradableImplement implements Tradable {
 	}
 
 	@Override
-	protected void buildId() throws InvalidTradableValue {
+	protected final void buildId() {
 		this.id = String.format("%s%s%s%s", this.getUser(), this.getProduct(), 
 				this.getPrice(), System.nanoTime());
 	}
 	
+	public final String toString() {
+		return String.format("%s order: %s %s %s at %s (Original Vol: %s, CXL'd Vol: %s), ID: %s",
+				this.getUser(), this.getSide(), this.getOriginalVolume(), this.getProduct(),
+				this.getPrice(), this.getOriginalVolume(), this.getCancelledVolume(), this.getId());
+	}
 }
