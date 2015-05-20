@@ -105,7 +105,7 @@ public abstract class TradableImplement implements Tradable {
 					+ "tradable's Original Volume (%s)"
                     , newCancelledVolume, this.remainVolume, this.originalVolume);
             throw new InvalidTradableValue(errMsg);
-		}
+		} 
 		this.cancelledVolume = newCancelledVolume;
 	}
 
