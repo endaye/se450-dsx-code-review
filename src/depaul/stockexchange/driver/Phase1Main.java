@@ -3,6 +3,9 @@ package depaul.stockexchange.driver;
 
 import java.util.ArrayList;
 
+import depaul.stockexchange.price.*;
+import depaul.stockexchange.tradable.*;
+
 // HERE you should add any imports for your classes that you need to make this class compile.
 // You will need imports for Price, PriceFactory, InvalidPriceOperation, Order, Quote, Tradable and TradableDTO;
 

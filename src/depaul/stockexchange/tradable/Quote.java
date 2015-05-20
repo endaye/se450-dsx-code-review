@@ -34,6 +34,19 @@ public class Quote {
 		}
 	}
 	
+	public QuoteSide getQuoteSide(String sideIn) throws InvalidTradableValue {
+		if (sideIn == null || "".equals(sideIn)) {
+			throw new InvalidTradableValue("The side is invalid.");
+		}
+		if (BookSide.valueOf(sideIn) == BookSide.BUY) {
+			return new QuoteSide(this.buyQs);
+		} else if (BookSide.valueOf(sideIn) == BookSide.SELL) {
+			return new QuoteSide(this.sellQs);
+		} else {
+			throw new InvalidTradableValue("The side is invalid.");
+		}
+	}
+	
 	public String toString() {
 		return String.format("%s quote: %s - %s ", 
 				this.getUserName(), this.buyQs, this.sellQs);

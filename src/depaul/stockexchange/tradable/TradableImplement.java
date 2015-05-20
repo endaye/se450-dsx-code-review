@@ -29,7 +29,7 @@ public abstract class TradableImplement implements Tradable {
 	}
 
 	@Override
-	public int getRemainVolume() {
+	public int getRemainingVolume() {
 		return this.remainVolume;
 	}
 
@@ -110,7 +110,7 @@ public abstract class TradableImplement implements Tradable {
 	}
 
 	@Override
-	public void setRemainVolume(int newRemainVolume) throws InvalidTradableValue {
+	public void setRemainingVolume(int newRemainVolume) throws InvalidTradableValue {
 		if (newRemainVolume < 0) {
 			throw new InvalidTradableValue (
 					"The remain volume " + newRemainVolume + " is invalid.");
@@ -124,4 +124,5 @@ public abstract class TradableImplement implements Tradable {
         }
         this.remainVolume = newRemainVolume;
 	}
+	
 }

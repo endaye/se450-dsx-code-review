@@ -6,7 +6,7 @@ public interface Tradable {
 	String getProduct();
 	Price getPrice();
 	int getOriginalVolume();
-	int getRemainVolume();
+	int getRemainingVolume();
 	int getCancelledVolume();
 	String getUser();
 	String getSide();
@@ -14,5 +14,5 @@ public interface Tradable {
 	String getId();
 	
 	void setCancelledVolume(int newCancelledVolume) throws InvalidTradableValue;
-	void setRemainVolume(int newRemainVolume) throws InvalidTradableValue;
+	void setRemainingVolume(int newRemainVolume) throws InvalidTradableValue;
 }

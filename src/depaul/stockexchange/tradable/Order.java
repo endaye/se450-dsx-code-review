@@ -12,9 +12,28 @@ public class Order extends TradableImplement implements Tradable {
 		this.setProduct(productSymbol);
 		this.setPrice(orderPrice);
 		this.setOriginalVolume(originalVolume);
-		this.setRemainVolume(originalVolume);
+		this.setRemainingVolume(originalVolume);
 		this.setSide(side);
 		this.buildId();
+	}
+	
+	public Order(String userName, String productSymbol, 
+			Price orderPrice, int originalVolume, String side) 
+					throws InvalidTradableValue {
+		if(side != null && "".equals(side)) {
+			try {
+				this.setSide(BookSide.valueOf(side.trim().toUpperCase()));
+			} catch(IllegalArgumentException ex) {}
+			this.setUser(userName);
+			this.setProduct(productSymbol);
+			this.setPrice(orderPrice);
+			this.setOriginalVolume(originalVolume);
+			this.setRemainingVolume(originalVolume);
+			this.buildId();
+		} else {
+			throw new InvalidTradableValue("The bookside is invalid.");
+		}
+		
 	}
 
 	@Override

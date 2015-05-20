@@ -23,7 +23,7 @@ public class QuoteSide extends TradableImplement implements Tradable {
 		this.setProduct(qs.getProduct());
 		this.setPrice(qs.getPrice());
 		this.setOriginalVolume(qs.getOriginalVolume());
-		this.setRemainVolume(qs.getRemainVolume());
+		this.setRemainingVolume(qs.getRemainingVolume());
 		this.setCancelledVolume(qs.getCancelledVolume());
 		this.setSide(BookSide.valueOf(qs.getSide().trim().toUpperCase()));
 		this.buildId();
