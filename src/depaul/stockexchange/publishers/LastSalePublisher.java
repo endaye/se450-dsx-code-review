@@ -5,6 +5,7 @@ import java.util.HashSet;
 
 import depaul.stockexchange.DataValidationException;
 import depaul.stockexchange.client.User;
+import depaul.stockexchange.price.InvalidPriceOperation;
 import depaul.stockexchange.price.Price;
 import depaul.stockexchange.price.PriceFactory;
 
@@ -35,7 +36,7 @@ public class LastSalePublisher implements PublisherInterface{
 	/**
 	 * Users subscribe for data. 
 	 */
-	public synchronized void subscrible(User u, String product) 
+	public synchronized void subscribe(User u, String product) 
 			throws AlreadySubscribedException, DataValidationException{
 
 		// user can't be null
@@ -93,7 +94,7 @@ public class LastSalePublisher implements PublisherInterface{
 		subscribers.remove(u);
 	}
 
-	public HashSet<User> getSubscribers(String product) throws DataValidationException {
+	private HashSet<User> getSubscribers(String product) throws DataValidationException {
 		// product can't be null or empty
 		if (product == null || product.isEmpty()) {
 			throw new DataValidationException ("Product can't be null or empty.");
@@ -112,15 +113,16 @@ public class LastSalePublisher implements PublisherInterface{
 	 * @throws DataValidationException 
 	 *      If the product is null or empty
 	 *      If the volume is negative
+	 * @throws InvalidPriceOperation 
 	 */
 	public synchronized void publishLastSale(String product, Price p, int v) 
-			throws DataValidationException {
+			throws DataValidationException, InvalidPriceOperation {
 
 		// Check if the product is null or empty
 		if (product == null || product.isEmpty()) {
 			throw new DataValidationException("The String stock symbol "
 					+ "passed in can't be null or empty.");
-		}
+		}//
 
 		// Check if the BUY side volume is negative
 		if (v < 0) {
@@ -147,6 +149,8 @@ public class LastSalePublisher implements PublisherInterface{
 			// call the user object's "acceptLastSale"
 			u.acceptLastSale(product, p, v);
 		}
+		
+		TickerPublisher.getInstance().publishTicker(product, p);
 	}
 
 }

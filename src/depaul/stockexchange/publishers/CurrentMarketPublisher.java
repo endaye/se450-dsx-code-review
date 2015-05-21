@@ -10,7 +10,7 @@ import depaul.stockexchange.price.PriceFactory;
 public class CurrentMarketPublisher implements PublisherInterface {
 
 	private HashMap<String, HashSet<User>> subscriptions = new HashMap<>();
-	
+
 	private volatile static CurrentMarketPublisher instance;
 
 	private CurrentMarketPublisher() {};
@@ -29,7 +29,7 @@ public class CurrentMarketPublisher implements PublisherInterface {
 	/**
 	 * Users subscribe for data. 
 	 */
-	public synchronized void subscrible(User u, String product) 
+	public synchronized void subscribe(User u, String product) 
 			throws AlreadySubscribedException, DataValidationException{
 
 		// user can't be null
@@ -87,7 +87,7 @@ public class CurrentMarketPublisher implements PublisherInterface {
 		subscribers.remove(u);
 	}
 
-	public HashSet<User> getSubscribers(String product) throws DataValidationException {
+	private HashSet<User> getSubscribers(String product) throws DataValidationException {
 		// product can't be null or empty
 		if (product == null || product.isEmpty()) {
 			throw new DataValidationException ("Product can't be null or empty.");
@@ -97,7 +97,7 @@ public class CurrentMarketPublisher implements PublisherInterface {
 
 	public synchronized void publishCurrentMarket(MarketDataDTO md) 
 			throws DataValidationException {
-		
+
 		if (md == null) {
 			throw new DataValidationException("The market data passed in "
 					+ "can't be null.");
