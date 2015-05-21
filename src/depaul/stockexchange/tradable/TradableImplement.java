@@ -45,8 +45,8 @@ public abstract class TradableImplement implements Tradable {
 	}
 
 	@Override
-	public String getSide() {
-		return this.side.toString();
+	public BookSide getSide() {
+		return this.side;
 	}
 
 	@Override
@@ -76,6 +76,17 @@ public abstract class TradableImplement implements Tradable {
 	
 	protected void setSide(BookSide side) {
 		this.side = side;
+	}
+	
+	protected void setSide(String side) throws InvalidTradableValue {
+		if (side == null || "".equals(side)) {
+			throw new InvalidTradableValue("The side is empty.");
+		}
+		try {
+			this.side = BookSide.valueOf(side.trim().toUpperCase());
+		} catch(IllegalArgumentException ex) {
+			throw new InvalidTradableValue("The side is invalid");
+		}
 	}
 	
 	protected void setPrice(Price price) throws InvalidTradableValue {

@@ -4,7 +4,7 @@ import depaul.stockexchange.BookSide;
 import depaul.stockexchange.price.*;
 
 public class Order extends TradableImplement implements Tradable {
-	
+
 	public Order(String userName, String productSymbol, 
 			Price orderPrice, int originalVolume, BookSide side) 
 					throws InvalidTradableValue {
@@ -16,24 +16,18 @@ public class Order extends TradableImplement implements Tradable {
 		this.setSide(side);
 		this.buildId();
 	}
-	
+
 	public Order(String userName, String productSymbol, 
 			Price orderPrice, int originalVolume, String side) 
 					throws InvalidTradableValue {
-		if(side != null && "".equals(side)) {
-			try {
-				this.setSide(BookSide.valueOf(side.trim().toUpperCase()));
-			} catch(IllegalArgumentException ex) {}
-			this.setUser(userName);
-			this.setProduct(productSymbol);
-			this.setPrice(orderPrice);
-			this.setOriginalVolume(originalVolume);
-			this.setRemainingVolume(originalVolume);
-			this.buildId();
-		} else {
-			throw new InvalidTradableValue("The bookside is invalid.");
-		}
-		
+		this.setUser(userName);
+		this.setProduct(productSymbol);
+		this.setPrice(orderPrice);
+		this.setOriginalVolume(originalVolume);
+		this.setRemainingVolume(originalVolume);
+		this.setSide(side);
+		this.buildId();
+
 	}
 
 	@Override
@@ -46,7 +40,7 @@ public class Order extends TradableImplement implements Tradable {
 		this.id = String.format("%s%s%s%s", this.getUser(), this.getProduct(), 
 				this.getPrice(), System.nanoTime());
 	}
-	
+
 	public final String toString() {
 		return String.format("%s order: %s %s %s at %s (Original Vol: %s, CXL'd Vol: %s), ID: %s",
 				this.getUser(), this.getSide(), this.getOriginalVolume(), this.getProduct(),

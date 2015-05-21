@@ -15,7 +15,7 @@ public class Phase1Main {
 
     private static final ArrayList<Price> testPriceHolder = new ArrayList<>();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InvalidPriceOperation {
 
         testPrices();
         testTradables();
@@ -106,7 +106,7 @@ public class Phase1Main {
 
     }
 
-    public static void testPrices() {
+    public static void testPrices() throws InvalidPriceOperation {
         makeSomeTestPriceObjects();
         verifyTestPriceValues();
         verifyMathematicalOperations();
@@ -157,7 +157,7 @@ public class Phase1Main {
             System.out.println("FAILED: " + ex.getMessage());
         }
         try {
-            Price results = testPriceHolder.get(1).subtract(testPriceHolder.get(1));
+            Price results = testPriceHolder.get(1).substract(testPriceHolder.get(1));
             System.out.format(format, testPriceHolder.get(1), '-', testPriceHolder.get(1), results, results.toString().equals("$0.00") ? "PASS" : "FAIL");
         } catch (InvalidPriceOperation ex) {
             System.out.println("FAILED: " + ex.getMessage());
@@ -175,7 +175,7 @@ public class Phase1Main {
             System.out.println("FAILED: " + ex.getMessage());
         }
         try {
-            Price results = testPriceHolder.get(4).subtract(testPriceHolder.get(5));
+            Price results = testPriceHolder.get(4).substract(testPriceHolder.get(5));
             System.out.format(format, testPriceHolder.get(4), '-', testPriceHolder.get(5), results, results.toString().equals("$-12.89") ? "PASS" : "FAIL");
         } catch (InvalidPriceOperation ex) {
             System.out.println("FAILED: " + ex.getMessage());
@@ -193,7 +193,7 @@ public class Phase1Main {
             System.out.println("   PASS: " + ex.getMessage() + ": (" + testPriceHolder.get(8) + " + " + testPriceHolder.get(0) + ")");
         }
         try {
-            testPriceHolder.get(8).subtract(testPriceHolder.get(0));
+            testPriceHolder.get(8).substract(testPriceHolder.get(0));
             System.out.println("   FAIL: Subtracting a LIMIT price from a MARKET Price succeeded: (" + testPriceHolder.get(8) + " - " + testPriceHolder.get(0) + ")");
         } catch (InvalidPriceOperation ex) {
             System.out.println("   PASS: " + ex.getMessage() + ": (" + testPriceHolder.get(8) + " - " + testPriceHolder.get(0) + ")");
@@ -224,7 +224,7 @@ public class Phase1Main {
         System.out.println();
     }
 
-    private static void verifyComparisons() {
+    private static void verifyComparisons() throws InvalidPriceOperation {
         System.out.println("5) Verifying the Functionality of your Boolean Comparisons:");
         Price testPrice = testPriceHolder.get(7);
 

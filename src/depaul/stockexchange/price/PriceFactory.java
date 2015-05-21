@@ -6,12 +6,12 @@ public class PriceFactory {
 	private static final HashMap<Long,Price> prices = new HashMap<Long, Price>();
 	private static final Price marketPrice = new Price();
 	
-	public static Price makeLimitPrice(String value) throws InvalidPriceValue {
+	public static Price makeLimitPrice(String value) {
 		double d = -1;
 		try {
 			d = Double.parseDouble(value.replaceAll("[$,]", ""));
 		} catch(NumberFormatException ne) {
-			throw new InvalidPriceValue("The value is invalid.");
+			// throw new InvalidPriceValue("The value is invalid.");
 		}
 		return PriceFactory.makeLimitPrice((long) (d * 100.0));
 	}

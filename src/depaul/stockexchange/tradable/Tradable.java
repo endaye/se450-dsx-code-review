@@ -1,5 +1,6 @@
 package depaul.stockexchange.tradable;
 
+import depaul.stockexchange.BookSide;
 import depaul.stockexchange.price.*;
 
 public interface Tradable {
@@ -9,7 +10,7 @@ public interface Tradable {
 	int getRemainingVolume();
 	int getCancelledVolume();
 	String getUser();
-	String getSide();
+	BookSide getSide();
 	boolean isQuote();
 	String getId();
 	

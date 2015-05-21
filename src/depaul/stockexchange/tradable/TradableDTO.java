@@ -16,10 +16,24 @@ public class TradableDTO {
 
 	public TradableDTO(String product, Price price, 
 			int originalVolume, int remainVolume, int cancelledVolume, 
-			String userName, String side, boolean isQuote, String id) {
-		if(side != null && "".equals(side)) {
+			String userName, BookSide bookSide, boolean isQuote, String id) {
+		this.user = userName;
+		this.side = bookSide;
+		this.product = product;
+		this.price = price;
+		this.originalVolume = originalVolume;
+		this.remainingVolume = remainVolume;
+		this.cancelledVolume = cancelledVolume;
+		this.isQuote = isQuote;
+		this.id = id;
+	}
+	
+	public TradableDTO(String product, Price price, 
+			int originalVolume, int remainVolume, int cancelledVolume, 
+			String userName, String bookSide, boolean isQuote, String id) {
+		if(bookSide != null && "".equals(bookSide)) {
 			try {
-				this.side = BookSide.valueOf(side.trim().toUpperCase());
+				this.side = BookSide.valueOf(bookSide.trim().toUpperCase());
 			} catch(IllegalArgumentException ex) {}
 		}
 		this.user = userName;
@@ -30,12 +44,11 @@ public class TradableDTO {
 		this.cancelledVolume = cancelledVolume;
 		this.isQuote = isQuote;
 		this.id = id;
-
 	}
 
 	public TradableDTO(Tradable t) {
 		this.user = t.getUser();
-		this.side = BookSide.valueOf(t.getSide().trim().toUpperCase());
+		this.side = t.getSide();
 		this.product = t.getProduct();
 		this.price = t.getPrice();
 		this.originalVolume = t.getOriginalVolume();

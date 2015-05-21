@@ -25,7 +25,7 @@ public class QuoteSide extends TradableImplement implements Tradable {
 		this.setOriginalVolume(qs.getOriginalVolume());
 		this.setRemainingVolume(qs.getRemainingVolume());
 		this.setCancelledVolume(qs.getCancelledVolume());
-		this.setSide(BookSide.valueOf(qs.getSide().trim().toUpperCase()));
+		this.setSide(qs.getSide());
 		this.buildId();
 	}
 	
@@ -40,7 +40,7 @@ public class QuoteSide extends TradableImplement implements Tradable {
 	}
 
 	public final String toString() {
-		return String.format("%s * %s (Original Vol: %s, CXL'd Vol: %s) [%s]",
-				this.getPrice(), this.getOriginalVolume(), this.getCancelledVolume(), this.getId());
+		return String.format("%s x %s (Original Vol: %s, CXL'd Vol: %s) [%s]",
+				this.getPrice(), this.getOriginalVolume(),this.getOriginalVolume(), this.getCancelledVolume(), this.getId());
 	}
 }

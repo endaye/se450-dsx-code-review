@@ -34,17 +34,24 @@ public class Quote {
 		}
 	}
 	
-	public QuoteSide getQuoteSide(String sideIn) throws InvalidTradableValue {
-		if (sideIn == null || "".equals(sideIn)) {
-			throw new InvalidTradableValue("The side is invalid.");
-		}
+	public QuoteSide getQuoteSide(String sideIn) {
 		if (BookSide.valueOf(sideIn) == BookSide.BUY) {
-			return new QuoteSide(this.buyQs);
-		} else if (BookSide.valueOf(sideIn) == BookSide.SELL) {
-			return new QuoteSide(this.sellQs);
-		} else {
-			throw new InvalidTradableValue("The side is invalid.");
+			try {
+				return new QuoteSide(this.buyQs);
+			} catch (InvalidTradableValue e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} 
+		if (BookSide.valueOf(sideIn) == BookSide.SELL) {
+			try {
+				return new QuoteSide(this.sellQs);
+			} catch (InvalidTradableValue e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		return null;
 	}
 	
 	public String toString() {
