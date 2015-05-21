@@ -126,7 +126,7 @@ public final class Price implements Comparable<Price> {
 		if (isMarket()) {
 			return "MKT";
 		} else {
-			return String.format("$%,.2f", (double)this.getPriceValue() / 100.00);
+			return String.format("$%,.2f", (double)getPriceValue() / 100.00);
 		}
 	}
 }

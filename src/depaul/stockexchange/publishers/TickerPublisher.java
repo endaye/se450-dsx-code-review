@@ -120,6 +120,8 @@ public class TickerPublisher implements PublisherInterface {
 	public synchronized void publishTicker(String product, Price p) 
 			throws DataValidationException, InvalidPriceOperation {
 
+		char direction;
+		
 		// Check if the product is null or empty
 		if (product == null || product.isEmpty()) {
 			throw new DataValidationException("The String stock symbol "
@@ -137,15 +139,15 @@ public class TickerPublisher implements PublisherInterface {
 		// If can't get the previous ticker value, assume it's $0.00
 		if (previousPrice == null) {
 			previousPrice = PriceFactory.makeLimitPrice(0);
-		}
-
-		char direction;
-		if (p.greaterThan(previousPrice)) {
-			direction = (char) 8593; //'↑' 
-		} else if (p.lessThan(previousPrice)) {
-			direction = (char) 8595; //' ↓'
-		} else {
 			direction = '=';
+		} else {
+			if (p.greaterThan(previousPrice)) {
+				direction = (char) 8593; //'↑' 
+			} else if (p.lessThan(previousPrice)) {
+				direction = (char) 8595; //' ↓'
+			} else {
+				direction = '=';
+			}
 		}
 
 		// set the current price as last sale price
