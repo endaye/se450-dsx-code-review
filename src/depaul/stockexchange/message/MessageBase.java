@@ -121,4 +121,13 @@ public abstract class MessageBase {
         }
         this.id = id;
     }
+	
+	@Override
+	public String toString() {
+		return String.format("User: %s, Product: %s, Price: %s, " 
+				+ "Volume: %s, Details: %s, Side: %s, Id: %s",
+				this.getUser(), this.getProduct(), this.getPrice(),
+				this.getVolume(), this.getDetails(), 
+				this.getSide(), this.getId());
+	}
 }
