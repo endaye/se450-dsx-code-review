@@ -1,6 +1,6 @@
 package depaul.stockexchange.price;
 
-public final class Price {
+public final class Price implements Comparable<Price> {
 	private final long value;
 	private final boolean isMarket; 
 	
@@ -46,20 +46,18 @@ public final class Price {
 		return PriceFactory.makeLimitPrice(newValue);
 	}
 	
-	
-	public int compareTo(Price p) throws InvalidPriceOperation {
+	@Override
+	public int compareTo(Price p) {
 		if (p == null) {
-			throw new InvalidPriceOperation("The price value is NULL.");
-		}
-		if (this.equals(p)) {
-			return 0;
-		} else if (this.greaterThan(p) ) {
-			return 1;
-		} else {
 			return -1;
 		}
-			
-		
+		if (this.getPriceValue() < p.getPriceValue()) {
+            return -1;
+        }
+        if (this.getPriceValue() > p.getPriceValue()) {
+            return 1;
+        }
+        return 0;
 	}
 	
 	public boolean greaterOrEqual(Price p) throws InvalidPriceOperation {
