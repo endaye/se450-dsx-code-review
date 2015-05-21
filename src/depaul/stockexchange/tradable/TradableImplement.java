@@ -74,7 +74,10 @@ public abstract class TradableImplement implements Tradable {
 	
 	protected abstract void buildId();
 	
-	protected void setSide(BookSide side) {
+	protected void setSide(BookSide side) throws InvalidTradableValue {
+		if (side == null) {
+			throw new InvalidTradableValue("The side is empty.");
+		}
 		this.side = side;
 	}
 	

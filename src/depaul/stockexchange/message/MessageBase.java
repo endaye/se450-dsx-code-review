@@ -97,7 +97,10 @@ public abstract class MessageBase {
 		this.details = details;
 	}
 
-	protected void setSide(BookSide side) {
+	protected void setSide(BookSide side) throws InvalidMessageDataException {
+		if (side == null) {
+			throw new InvalidMessageDataException("The side is empty");
+		}
 		this.side = side;
 	}
 
