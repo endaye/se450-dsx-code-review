@@ -11,6 +11,7 @@ import depaul.stockexchange.price.PriceFactory;
 public class LastSalePublisher implements PublisherInterface{
 
 	private HashMap<String, HashSet<User>> subscriptions = new HashMap<>();
+	
 	private volatile static LastSalePublisher instance;
 
 	private LastSalePublisher() {}

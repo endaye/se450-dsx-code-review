@@ -10,6 +10,7 @@ import depaul.stockexchange.price.PriceFactory;
 public class CurrentMarketPublisher implements PublisherInterface {
 
 	private HashMap<String, HashSet<User>> subscriptions = new HashMap<>();
+	
 	private volatile static CurrentMarketPublisher instance;
 
 	private CurrentMarketPublisher() {};
